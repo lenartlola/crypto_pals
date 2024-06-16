@@ -1,6 +1,7 @@
 use hex;
 use base64::{Engine as _, engine::general_purpose};
 
+#[allow(unused)]
 pub fn hex_to_b64(s: &String) -> Result<String, String> {
     let hex_str = hex::decode(s);
     match hex_str {
@@ -11,3 +12,4 @@ pub fn hex_to_b64(s: &String) -> Result<String, String> {
         Err(e) => Err(e.to_string()),
     }
 }
+
