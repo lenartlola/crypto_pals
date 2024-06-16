@@ -1,3 +1,4 @@
+use std::collections::HashMap;
 use hex;
 
 #[allow(unused)]
@@ -13,15 +14,15 @@ pub fn fixed_xor(s1: &String, s2: &String) -> String {
     hex::encode(res)
 }
 
-pub fn single_byte_xor(s: String) -> Vec<String> {
+pub fn single_byte_xor(s: String) -> HashMap<String, char> {
     let s_hex = hex::decode(s).unwrap();
     let chars = "abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ";
-    let mut ret: Vec<String> = Vec::new();
+    let mut ret: HashMap<String, char> = HashMap::new();
 
     for c in chars.chars() {
         //TODO we should probably create a dictionary and test for word frequency.
         let xored: String = s_hex.iter().map(|x| (x ^ c as u8) as char).collect(); 
-        ret.push(xored);
+        ret.insert(xored, c);
     }
     ret
 }
