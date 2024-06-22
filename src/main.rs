@@ -28,4 +28,14 @@ mod tests {
         let result = xor::fixed_xor(&s1.to_string(), &s2.to_string());
         assert_eq!(expected.to_string(), result);
     }
+
+    #[test]
+    fn test_repeating_xor() {
+        let s1 = "Burning 'em, if you ain't quick and nimble\nI go crazy when I hear a cymbal";
+        let key = "ICE";
+
+        let res1 = xor::repeating_xor(s1.to_string(), key.to_string());
+        let expected1 = "0b3637272a2b2e63622c2e69692a23693a2a3c6324202d623d63343c2a26226324272765272a282b2f20430a652e2c652a3124333a653e2b2027630c692b20283165286326302e27282f";
+        assert_eq!(expected1.to_string(), res1);
+    }
 }

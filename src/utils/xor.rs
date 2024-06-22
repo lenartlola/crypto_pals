@@ -27,3 +27,18 @@ pub fn single_byte_xor(s: String) -> HashMap<String, char> {
     ret
 }
 
+#[allow(unused)]
+pub fn repeating_xor(s: String, key: String) -> String {
+    let range = key.len();
+    let mut c_index = 0;
+    let mut ret = String::new();
+
+    for c in s.chars() {
+        ret.push((c as u8 ^ key.as_bytes()[c_index]) as char);
+        c_index += 1;
+        if c_index == range {
+            c_index = 0;
+        }
+    }
+    hex::encode(ret)
+}
